@@ -1,3 +1,7 @@
+/*Realizar un programa que permita sacar la siguien secuencia de numeros donde
+(a+b) [(a+b)+b] [(a+b+b)+b] [(a+b+b+b)+b]
+mostrar los 10 primeros numeros de la sucesion
+*/
 #include <iostream>
 
 void recursivo(int a, int b, int cont, int suma);

@@ -15,6 +15,8 @@ int main()
     return 0;
 }
 
+
+//Se le agrega como parametros los numeros a y b, ademas de un contador y la suma
 void recursivo(int a, int b, int cont, int  suma)
 {
     int aux = cont;

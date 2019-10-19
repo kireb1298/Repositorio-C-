@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     int arreglo[8], numeroR, contador = 0;
     for(int i = 0; i < 8; i++)
     {
+        
         numeroR = 1 + rand() % (20 -1);
         while(verificacion(numeroR, arreglo))   // Si el numero existe se repite el bucle hasta que genere un aleatorio diferente
         {
@@ -36,8 +37,7 @@ bool verificacion(int n, int arreglo[])
     for(int i = 0; i < 8; i++) // Se crea un bucle para recorrer el arreglo
     {
         if(n == arreglo[i])   // Si ya existe un numero igual retorna true
-            return true;
-        return false;         // Si no retorna false
-        
+            return true;      // Si no retorna false    
     }
+    return false;  
 }

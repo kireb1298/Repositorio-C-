@@ -3,6 +3,7 @@ Realizar un generador de codigo y decodificador, que consiste en indicar un nume
 y cada letra recorrera 3 espacios en el abecedario esto realizarlo para una frase no mayor de 35 caracteres.
 */
 #include <iostream>
+#include <string>
 
 std::string codificador(std::string frase);
 std::string decodificador(std::string codificado);
@@ -10,7 +11,6 @@ std::string decodificador(std::string codificado);
 int main()
 {
     std::string frase;
-
     std::cout << "Ingrese una frase: ";
     std::getline(std::cin, frase);
 

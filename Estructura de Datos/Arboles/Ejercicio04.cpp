@@ -1,5 +1,4 @@
-
-//Crear una función que devuelva el número de elementos de un árbol binario.
+//¿Cuál es la diferencia entre el mayor y menor elemento de un árbol?
 #include <iostream>
 using namespace std;
 
@@ -13,7 +12,9 @@ typedef NodoArbol *arbol;
 
 void inserta(arbol &abb, int x);
 bool empty(arbol abb);
-int size(arbol abb);
+int menor(arbol abb);
+int mayor(arbol abb);
+int diferencia(arbol abb);
 
 int main()
 {
@@ -28,8 +29,8 @@ int main()
         cin >> x;
         inserta(abb, x);
     }
-    cout << "El numero de elementos en el arbol es: " << size(abb) << endl;
 
+    cout << "La diferencia es: " << diferencia(abb) << endl;
     system("pause");
     return 0;
 }
@@ -49,15 +50,28 @@ void inserta(arbol &abb, int x)
         inserta(abb->hd, x);
 }
 
-int size(arbol abb)
-{
-    if (!empty(abb))
-        return 1 + size(abb->hi) + size(abb->hd);
-    else
-        return 0;
-}
-
 bool empty(arbol abb)
 {
     return (abb == NULL) ? true : false;
+}
+
+int mayor(arbol abb)
+{
+    if (abb->hd != NULL)
+        return mayor(abb->hd);
+    else
+        return abb->info;
+}
+
+int menor(arbol abb)
+{
+    if (abb->hi != NULL)
+        return menor(abb->hi);
+    else
+        return abb->info;
+}
+
+int diferencia(arbol abb)
+{
+    return mayor(abb) - menor(abb);
 }

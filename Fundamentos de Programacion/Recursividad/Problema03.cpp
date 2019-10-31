@@ -5,6 +5,7 @@ que no se repita ninguno.
 */
 #include <iostream>
 #include <ctime>
+#include <string>
 
 bool verificacion(int n, int arreglo[]);
 int main(int argc, char *argv[])

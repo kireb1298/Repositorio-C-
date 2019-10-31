@@ -70,18 +70,24 @@ void inserta(arbol &abb, int x)
 
 void preOrden(arbol a, arbol b)
 {
-    comparar(b, a->info);
-    preOrden(a->hi, b);
-    preOrden(a->hd, b);
+    if (!empty(a))
+    {
+        comparar(b, a->info);
+        preOrden(a->hi, b);
+        preOrden(a->hd, b);
+    }
 }
 
 void comparar(arbol a, int x)
 {
-    if (x == a->info)
+    if (!empty(a))
     {
-        comparar(a->hi, x);
-        comparar(a->hd, x);
+        if (x == a->info)
+        {
+            comparar(a->hi, x);
+            comparar(a->hd, x);
+        }
+        else
+            cout << x << "   ";
     }
-    else
-       cout << x << "   "; 
 }

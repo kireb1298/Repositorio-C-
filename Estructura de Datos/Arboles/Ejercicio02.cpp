@@ -56,12 +56,18 @@ void preOrden(arbol abb, int dato)
 {
     if (!empty(abb))
     {
-        if(abb->info != dato)
-            cout << abb->info << "  ";
-        else
+        if (abb->info == dato)
             exit(1);
-        preOrden(abb->hi, dato);
-        preOrden(abb->hd, dato);
+        else if (dato < abb->info)
+        {
+            cout << abb->info << "  ";
+            preOrden(abb->hi, dato);
+        }
+        else if (dato > abb->info)
+        {
+            cout << abb->info << "  ";
+            preOrden(abb->hd, dato);
+        }
     }
 }
 
@@ -69,4 +75,3 @@ bool empty(arbol abb)
 {
     return (abb == NULL) ? true : false;
 }
-

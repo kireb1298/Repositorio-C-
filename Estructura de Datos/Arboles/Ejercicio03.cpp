@@ -1,5 +1,7 @@
-//Dado un ABB, cree una copia de él.
-
+/*
+En un ABB, busque un valor y diga cuantos elementos se recorrieron para llegar a dicho valor. 
+Este valor es conocido como longitud del camino.
+*/
 #include <iostream>
 using namespace std;
 
@@ -12,32 +14,28 @@ struct NodoArbol
 typedef NodoArbol *arbol;
 
 void inserta(arbol &abb, int x);
-void preOrden(arbol abb, arbol &b);
-void preOrden(arbol abb);
+int camino(arbol abb, int dato);
 bool empty(arbol abb);
 
 int main()
 {
-    arbol a = NULL, b = NULL;
-    int x, n;
+    arbol abb = NULL;
+    int n, x;
 
-    cout << "Cantidad de elementos: ";
+    cout << "Numero de elementos: ";
     cin >> n;
 
     for (int i = 0; i < n; i++)
     {
         cout << "Elemento: ";
         cin >> x;
-        inserta(a, x);
+        inserta(abb, x);
     }
 
-    cout << "Elementos que seran copiados: " << endl;
-    preOrden(a, b);
-    cout << endl;
+    cout << "Ingrese un elemento: ";
+    cin >> x;
 
-    cout << "Elementos del nuevo arbol: " << endl;
-    preOrden(b);
-    cout << endl;
+    cout << "La longitud del camino es: " << camino(abb, x) << endl;
 
     system("pause");
     return 0;
@@ -58,24 +56,16 @@ void inserta(arbol &abb, int x)
         inserta(abb->hd, x);
 }
 
-void preOrden(arbol abb, arbol &b)
+int camino(arbol abb, int dato)
 {
     if (!empty(abb))
     {
-        cout << abb->info << " ";
-        inserta(b, abb->info);
-        preOrden(abb->hi, b);
-        preOrden(abb->hd, b);
-    }
-}
-
-void preOrden(arbol abb)
-{
-    if (!empty(abb))
-    {
-        cout << abb->info << " ";
-        preOrden(abb->hi);
-        preOrden(abb->hd);
+        if (abb->info == dato)
+            return 0;
+        else if (dato < abb->info)
+            return 1 + camino(abb->hi, dato);
+        else if (dato > abb->info)
+            return 1 + camino(abb->hd, dato);
     }
 }
 

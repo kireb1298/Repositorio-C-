@@ -1,5 +1,7 @@
-//Dado un ABB, cree una copia de él.
-
+/*
+Muestre todas las hojas terminales (también llamados elementos de la frontera del árbol en un ABB, 
+Sugerencia: recorra el árbol y cuando no tenga a donde ir (izquierda y derecha apuntan a NULL) imprima su valor.
+*/
 #include <iostream>
 using namespace std;
 
@@ -12,31 +14,25 @@ struct NodoArbol
 typedef NodoArbol *arbol;
 
 void inserta(arbol &abb, int x);
-void preOrden(arbol abb, arbol &b);
-void preOrden(arbol abb);
 bool empty(arbol abb);
+void hojas(arbol abb);
 
 int main()
 {
-    arbol a = NULL, b = NULL;
-    int x, n;
+    arbol abb = NULL;
+    int n, x;
 
-    cout << "Cantidad de elementos: ";
+    cout << "Numero de elementos: ";
     cin >> n;
 
     for (int i = 0; i < n; i++)
     {
         cout << "Elemento: ";
         cin >> x;
-        inserta(a, x);
+        inserta(abb, x);
     }
-
-    cout << "Elementos que seran copiados: " << endl;
-    preOrden(a, b);
-    cout << endl;
-
-    cout << "Elementos del nuevo arbol: " << endl;
-    preOrden(b);
+    
+    hojas(abb);
     cout << endl;
 
     system("pause");
@@ -58,24 +54,14 @@ void inserta(arbol &abb, int x)
         inserta(abb->hd, x);
 }
 
-void preOrden(arbol abb, arbol &b)
+void hojas(arbol abb)
 {
     if (!empty(abb))
     {
-        cout << abb->info << " ";
-        inserta(b, abb->info);
-        preOrden(abb->hi, b);
-        preOrden(abb->hd, b);
-    }
-}
-
-void preOrden(arbol abb)
-{
-    if (!empty(abb))
-    {
-        cout << abb->info << " ";
-        preOrden(abb->hi);
-        preOrden(abb->hd);
+        if (abb->hi == NULL && abb->hd == NULL)
+            cout << abb->info << "  ";
+        hojas(abb->hi);
+        hojas(abb->hd);
     }
 }
 

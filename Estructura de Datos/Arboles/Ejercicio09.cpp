@@ -1,4 +1,8 @@
-//En un árbol binario. ¿Cuantos nodos tienen un solo hijo?
+/*
+Encuentre el mayor elemento de un ABB por los 2 métodos siguientes:
+Buscando el mayor iterativamente solamente por el lado correcto, 
+buscando el mayor recursivamente solo por el lado correcto.
+*/
 #include <iostream>
 using namespace std;
 
@@ -12,7 +16,8 @@ typedef NodoArbol *arbol;
 
 void inserta(arbol &abb, int x);
 bool empty(arbol abb);
-int nodos(arbol abb);
+int mayorR(arbol abb);
+int mayorI(arbol abb);
 
 int main()
 {
@@ -28,9 +33,10 @@ int main()
         cin >> x;
         inserta(abb, x);
     }
-    
-    cout << "El numero de nodos con un hijo es: " << nodos(abb) << endl;
-    
+
+    cout << "El mayor Recursivamente: " << mayorR(abb) << endl;
+    cout << "El mayor Iterativamente: " << mayorI(abb) << endl;
+
     system("pause");
     return 0;
 }
@@ -50,20 +56,27 @@ void inserta(arbol &abb, int x)
         inserta(abb->hd, x);
 }
 
-int nodos(arbol abb)
+int mayorR(arbol abb)
 {
-    if (!empty(abb))
-    {
-        if((abb->hi == NULL && abb->hd != NULL) || (abb->hi != NULL && abb->hd == NULL))
-            return 1 + nodos(abb->hi) + nodos(abb->hd);
-        else
-            return nodos(abb->hi) + nodos(abb->hd);
-    }
-    return 0;
+    if (!empty(abb->hd))
+        return mayorR(abb->hd);
+    else
+        return abb->info;
 }
-
 
 bool empty(arbol abb)
 {
     return (abb == NULL) ? true : false;
+}
+
+int mayorI(arbol abb)
+{
+    arbol aux = abb;
+
+    while (!empty(aux))
+    {
+        if (aux->hd == NULL)
+            return aux->info;
+        aux = aux->hd;
+    }
 }

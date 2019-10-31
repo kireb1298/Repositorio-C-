@@ -16,7 +16,7 @@ int hojas(arbol abb);
 
 int main()
 {
-    arbol abb = NULL, b;
+    arbol abb = NULL;
     int n, x;
 
     cout << "Numero de elementos: ";

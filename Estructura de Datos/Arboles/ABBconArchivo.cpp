@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		cout << "No existe el archivo [data.dat] ";
 	else
 	{
-		cout << "Si existe el archivo [data.dat]";
+		cout << "Si existe el archivo [data.dat]" << endl;
 		ifstream leerArchivo("data.dat", ios::binary);
 		leerArchivo.seekg(0, ios::beg);
 		leerArchivo.read((char *)&palabra, sizeof(Dato));
